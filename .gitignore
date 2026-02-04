@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# PyTorch
+*.pt
+*.pth
+*.ckpt
+
+# Data & Output
+/data/*.pdb
+/output/*.fasta
+/output/*.json
+!/data/.gitkeep
+!/output/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
