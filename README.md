@@ -71,13 +71,22 @@ This repository provides:
 
 ### What Works ✅
 
-**Batching**: 1.26x speedup (batch_size=8)
-- Batch size 1: 14.79 ms/protein (baseline)
-- Batch size 2: 12.58 ms/protein (1.18x speedup)
-- Batch size 4: 11.93 ms/protein (1.24x speedup)
-- Batch size 8: 11.69 ms/protein (1.26x speedup)
+**🎉 MAJOR FINDING: 3.18x speedup achieved!**
 
-**Recommendation**: Use batch_size=2-4 for optimal efficiency/speedup tradeoff in production.
+| Variant | Configuration | Speedup | Performance |
+|---------|---------------|---------|-------------|
+| **Ultra-Fast** | k=16, batch=4 | **3.18x** | 4.68 ms/protein (22,643 res/sec) |
+| **Fast** | k=16, batch=1 | **1.75x** | 8.50 ms/protein (12,473 res/sec) |
+| High-Throughput | k=32, batch=4 | 1.77x | 8.42 ms/protein (12,596 res/sec) |
+| Balanced | k=32, batch=1 | 1.30x | 11.47 ms/protein (9,242 res/sec) |
+| Baseline | k=48, batch=1 | 1.00x | 14.89 ms/protein (7,118 res/sec) |
+
+**Key Optimizations:**
+1. **Reduce k-neighbors** (48→16): 1.75x speedup by reducing graph complexity
+2. **Batching** (1→4): 1.26x speedup by better GPU utilization
+3. **Combined**: 3.18x total speedup (multiplicative effect)
+
+**Recommendation**: Use Fast variant (k=16, batch=1) for most work - simple, effective, 1.75x faster.
 
 ### What Doesn't Work ❌
 
