@@ -1,4 +1,8 @@
+# Official ProteinMPNN (PyTorch backend)
 torch>=2.0.0
 numpy>=1.24.0
 biopython>=1.81
 tqdm>=4.65.0
+
+# MLX for Apple Silicon optimizations (optional)
+mlx>=0.30.0
