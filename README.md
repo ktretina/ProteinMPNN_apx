@@ -123,6 +123,48 @@ This repository provides:
 - Actual result: Current implementation well-optimized for typical sizes
 - Root cause: GPU-optimized for proteins <1000 residues; ANN algorithms don't help
 
+---
+
+## Experimental Optimizations & Future Work 🔬
+
+**We tested extreme k-neighbor reduction and analyzed paradigm-shifting optimizations.**
+
+### What We Tested: Extreme K-Reduction
+
+| k Value | Speedup | Throughput | Quality Estimate |
+|---------|---------|------------|------------------|
+| 48 (baseline) | 1.00x | 7,287 res/sec | Excellent |
+| 16 (current) | 1.70x | 12,404 res/sec | Good |
+| **12 (new)** | **1.83x** | **13,325 res/sec** | **Fair** |
+| 8 (risky) | 1.85x | 13,459 res/sec | Risky |
+
+**Finding**: k=12 offers 7.6% speedup vs k=16, but needs accuracy validation.
+
+**EXTREME-v2 (potential)**: 2+2 layers, dim=64, k=12, batch=8 → **~7.5x speedup**
+
+### Future Optimizations (Require Training)
+
+Most experimental optimizations from literature **require retraining**:
+
+**⭐⭐⭐⭐⭐ Knowledge Distillation** (1-2 weeks effort):
+- Train tiny student (1+1 layers) to mimic teacher (3+3 layers)
+- Expected: **10-15x speedup** (vs current 6.85x)
+- **Best next step** for surpassing current performance
+
+**⭐⭐⭐⭐ Mamba/State Space Models** (3+ months effort):
+- Replace O(N²) graph attention with O(N) SSM
+- Expected: **2-4x speedup** for proteins >500 residues
+- Best for very long proteins (1000+ residues)
+
+**⭐⭐⭐ Non-Autoregressive Decoding** (1-2 months effort):
+- Parallel sequence generation (MLM objective)
+- Expected: **3-5x speedup** for sampling tasks
+- Good for high-throughput screening
+
+See [EXPERIMENTAL_OPTIMIZATIONS_ANALYSIS.md](EXPERIMENTAL_OPTIMIZATIONS_ANALYSIS.md) for detailed analysis.
+
+---
+
 ### Reality Check
 
 **Literature claims of 10-25x speedups are CUDA-specific and don't transfer to Apple Silicon:**
@@ -253,13 +295,15 @@ ProteinMPNN_apx/
 │   ├── benchmark_comprehensive.py         # K-neighbors sweep
 │   ├── benchmark_model_pruning.py         # Model architecture reduction
 │   ├── benchmark_ultimate_variants.py     # Combined optimizations (6.85x)
-│   └── benchmark_quantization.py          # Int8 quantization testing
+│   ├── benchmark_quantization.py          # Int8 quantization testing
+│   └── benchmark_extreme_k_reduction.py   # Extreme k-reduction (k=8, k=12)
 │
 ├── Documentation/
 │   ├── COMPLETE_OPTIMIZATION_GUIDE.md     # Comprehensive guide (850+ lines)
 │   ├── OPTIMIZATION_RESULTS.md            # What doesn't work
 │   ├── OPTIMIZATIONS_THAT_WORK.md         # Production-ready variants
-│   ├── NEW_OPTIMIZATIONS_TESTED.md        # Latest round of testing
+│   ├── NEW_OPTIMIZATIONS_TESTED.md        # Round 2: Quantization, KV caching
+│   ├── EXPERIMENTAL_OPTIMIZATIONS_ANALYSIS.md  # Round 3: Paradigm shifts, distillation
 │   ├── TRANSPARENCY_REPORT.md             # Validation methodology
 │   └── FINAL_STATUS_REPORT.md             # Project status
 │
