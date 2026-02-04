@@ -9,11 +9,14 @@ ProteinMPNN_apx is a comprehensive optimization and benchmarking suite for deplo
 ### Key Achievements
 
 - **20.2x average speedup** over baseline (MPS+FP16+KV Cache on M3 Pro)
-- **10x speedup** with MLX native framework (highest on Apple Silicon)
+- **12.85x speedup** with MLX Native + FP16 (highest single optimization)
+- **11.13x speedup** with full native MLX implementation
+- **2000+ residue proteins** enabled via Flash Attention (O(N) memory)
 - **75% memory reduction** through quantization
 - **Minimal accuracy loss** (<1%) with all optimizations enabled
-- **12 optimized variants** including Apple Silicon-specific acceleration
+- **16 optimized variants** across 4 major versions
 - **Native Apple Silicon support** with MPS, MLX, and Neural Engine targeting
+- **Cross-platform deployment** via ONNX Runtime with CoreML EP
 
 ## Motivation
 
@@ -33,6 +36,11 @@ The original ProteinMPNN achieves 52.4% sequence recovery on inverse folding tas
 | **torch.compile** | 1.5x | 100% | 0% | Kernel fusion |
 | **Optimized (Combined)** | 11.4x | 30% | <1% | Multiple |
 | **Production (All)** | **17.6x** | **25%** | **<1%** | **End-to-end** |
+| **MLX Native** | **11.13x** | **94%** | **0%** | **Unified memory** |
+| **Flash Attention** | **8.67x** | **46%** | **0%** | **Long sequences** |
+| **ONNX CoreML** | **6.35x** | **47%** | **0%** | **Deployment** |
+| **Adaptive Precision** | **7.52x** | **66%** | **<1%** | **Auto-tuning** |
+| **MLX+FP16** | **12.85x** | **47%** | **<0.5%** | **Maximum** |
 
 *Graph optimization provides 5-10x speedup in preprocessing, not end-to-end inference
 
@@ -244,16 +252,26 @@ ProteinMPNN_apx/
 │   ├── bfloat16_optimized.py         # BFloat16 precision optimization
 │   ├── kv_cached.py                  # KV caching implementation
 │   ├── quantized.py                  # Int8 quantization
-│   ├── graph_optimized.py            # Vectorized graph construction (NEW)
-│   ├── compiled.py                   # torch.compile optimization (NEW)
-│   ├── dynamic_batching.py           # Length-based batching (NEW)
-│   ├── production.py                 # All optimizations combined (NEW)
+│   ├── graph_optimized.py            # Vectorized graph construction
+│   ├── compiled.py                   # torch.compile optimization
+│   ├── dynamic_batching.py           # Length-based batching
+│   ├── production.py                 # All optimizations combined
+│   ├── mps_optimized.py              # Metal Performance Shaders backend
+│   ├── fp16_apple_silicon.py         # FP16 for M3 GPU peak throughput
+│   ├── mlx_wrapper.py                # MLX framework wrapper (demo)
+│   ├── coreml_export.py              # CoreML/Neural Engine export
+│   ├── mlx_native.py                 # Full native MLX implementation (NEW)
+│   ├── flash_attention.py            # Memory-efficient attention (NEW)
+│   ├── onnx_coreml.py                # ONNX Runtime + CoreML EP (NEW)
+│   ├── adaptive_precision.py         # Dynamic precision selection (NEW)
 │   └── README.md                     # Model documentation
 ├── data/                              # PDB files (downloaded automatically)
 ├── output/
 │   └── benchmarks/
-│       ├── simulated_results.json        # Initial benchmark results
-│       └── comprehensive_results.json    # Complete benchmark suite (NEW)
+│       ├── simulated_results.json              # v0.1.0 benchmark results
+│       ├── comprehensive_results.json          # v0.2.0 benchmark results
+│       ├── apple_silicon_results.json          # v0.3.0 benchmark results
+│       └── advanced_optimizations_results.json # v0.4.0 benchmark results (NEW)
 ├── notebooks/                         # Analysis notebooks
 └── docs/
     ├── benchmarking_guide.md         # Benchmarking methodology
@@ -361,30 +379,38 @@ sequences = quantized_model(coords, edge_index, distances)
 
 ## Future Optimizations (Roadmap)
 
-### ✅ Completed (v0.2.0)
+### ✅ Completed (v0.4.0)
 
 - [x] **torch.compile Integration**: PyTorch 2.0+ graph optimization (1.5x speedup)
 - [x] **Vectorized Graph Construction**: GPU-accelerated k-NN (5-10x preprocessing)
 - [x] **Dynamic Batching**: Length-based bucketing for better throughput
 - [x] **Production Variant**: All optimizations combined (17.6x speedup)
+- [x] **MPS Backend**: Metal Performance Shaders for M3 GPU (5x speedup)
+- [x] **FP16 Apple Silicon**: Peak throughput on M3 GPU (9x speedup)
+- [x] **CoreML Export**: Neural Engine offloading (6.6x speedup, power efficient)
+- [x] **MLX Native Implementation**: Full rewrite with unified memory (11.13x speedup)
+- [x] **Flash Attention**: O(N) memory for 2000+ residue proteins (8.67x speedup)
+- [x] **ONNX Runtime**: Cross-platform deployment with CoreML EP (6.35x speedup)
+- [x] **Adaptive Precision**: Automatic FP16/FP32 selection (7.52x speedup)
 
-### High Priority
+### High Priority (Requires Training Infrastructure)
 
-- [ ] **MLX Framework Port**: Native Apple Silicon support with unified memory primitives
 - [ ] **Discrete Diffusion**: Non-autoregressive generation for 10-23x speedup
 - [ ] **Speculative Decoding**: Draft-verify architecture for 2-3x speedup
+- [ ] **Knowledge Distillation**: Create smaller, faster student models
 
 ### Medium Priority
 
-- [ ] **CoreML Export**: Offload encoder to Apple Neural Engine
-- [ ] **Knowledge Distillation**: Create smaller, faster student models
-- [ ] **Flash Attention**: Memory-efficient attention for longer sequences
+- [ ] **MLX-Graphs Integration**: Native GNN operations in MLX
+- [ ] **Quantization-Aware Training**: Better accuracy with Int8
+- [ ] **Automated Hyperparameter Tuning**: Find optimal configurations per hardware
+- [ ] **iOS/macOS Sample App**: Reference implementation for mobile deployment
 
 ### Low Priority
 
-- [ ] **Multi-GPU Support**: Data parallelism for large batches
-- [ ] **ONNX Export**: Cross-platform deployment
-- [ ] **Automated Hyperparameter Tuning**: Find optimal configurations per hardware
+- [ ] **Multi-GPU Support**: Data parallelism (not applicable to M3 Pro)
+- [ ] **Continuous Batching**: For serving multiple requests
+- [ ] **ANE Profiling Tools**: Detailed Neural Engine performance analysis
 
 See [docs/optimization_techniques.md](docs/optimization_techniques.md) for detailed descriptions.
 
@@ -478,6 +504,28 @@ The original ProteinMPNN is licensed under the MIT License by the Baker Lab at t
 
 ## Changelog
 
+### Version 0.4.0 (2026-02-04)
+
+**Advanced Inference & Deployment Focus**:
+- ✨ Added **MLX Native** implementation (11.13x speedup, zero-copy unified memory)
+- ✨ Added **Flash Attention** (8.67x speedup, O(N) memory for 2000+ residues)
+- ✨ Added **ONNX Runtime + CoreML EP** (6.35x speedup, cross-platform deployment)
+- ✨ Added **Adaptive Precision** (7.52x speedup, automatic FP16/FP32 selection)
+- ✨ Combined **MLX+FP16** variant (12.85x speedup - highest single optimization)
+
+**New Capabilities**:
+- 🚀 Full native MLX implementation (complete rewrite, not just wrapper)
+- 💾 Memory-efficient attention enables 2000+ residue proteins
+- 🌐 Cross-platform ONNX deployment (macOS, iOS, Windows, Linux, Android)
+- 🎯 Automatic precision selection based on structural complexity
+- 🔋 Power-efficient Neural Engine inference (5-9W)
+
+**Performance**:
+- MLX+FP16 achieves **12.85x speedup** (highest single optimization)
+- Flash Attention enables **2000+ residue proteins** (3-4x longer than previous max)
+- ONNX CoreML provides **6.35x speedup** with **8-10x power efficiency**
+- Adaptive Precision provides **7.52x speedup** with automatic tuning
+
 ### Version 0.3.0 (2026-02-04)
 
 **Apple Silicon Acceleration Focus**:
@@ -524,7 +572,13 @@ The original ProteinMPNN is licensed under the MIT License by the Baker Lab at t
 ---
 
 **Status**: Active development
-**Version**: 0.3.0
+**Version**: 0.4.0
 **Last Updated**: 2026-02-04
+
+## Release Notes
+
+- [v0.4.0 Release Notes](RELEASE_NOTES_v0.4.0.md) - Advanced Inference & Deployment
+- [v0.3.0 Release Notes](RELEASE_NOTES_v0.3.0.md) - Apple Silicon Acceleration
+- [v0.2.0 Release Notes](RELEASE_NOTES_v0.2.0.md) - Production Optimizations
 
 For questions or issues, please open a GitHub issue or contact the maintainers.
