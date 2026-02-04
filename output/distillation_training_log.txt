@@ -1,0 +1,164 @@
+======================================================================
+KNOWLEDGE DISTILLATION TRAINING
+======================================================================
+
+Teacher: 3+3 layers, dim=128, k=48 (frozen)
+Student: 1+1 layers, dim=64, k=16 (training)
+
+Hyperparameters:
+  Alpha (CE weight): 0.5
+  Beta (KL weight): 0.5
+  Temperature: 3.0
+  Learning Rate: 0.0001
+  Epochs: 5
+  Batch Size: 4
+
+----------------------------------------------------------------------
+Loading training proteins...
+Found 2 training proteins
+
+----------------------------------------------------------------------
+Loading teacher model (3+3 layers, dim=128, k=48)...
+Creating student model (1+1 layers, dim=64, k=16)...
+
+======================================================================
+TRAINING
+======================================================================
+
+Epoch 1/5
+----------------------------------------------------------------------
+Training:   0%|          | 0/2 [00:00<?, ?it/s]Training:  50%|█████     | 1/2 [00:00<00:00,  6.38it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.33it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.34it/s]
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/numpy/core/fromnumeric.py:3504: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/numpy/core/_methods.py:129: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/5L33.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/6MRR.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Epoch 1 Summary:
+  Loss: nan
+  CE Loss: nan
+  KL Loss: nan
+  Accuracy: nan
+
+Evaluating on test protein...
+  Student time: 224.69 ms
+  Teacher time: 61.19 ms
+  Speedup: 0.27x
+  Student accuracy: 0.019
+  Teacher accuracy: 0.434
+  Student-Teacher agreement: 0.057
+Checkpoint saved to output/distillation/student_epoch_1.pt
+
+Epoch 2/5
+----------------------------------------------------------------------
+Training:   0%|          | 0/2 [00:00<?, ?it/s]Training:  50%|█████     | 1/2 [00:00<00:00,  6.35it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.48it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.45it/s]
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/5L33.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/6MRR.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Epoch 2 Summary:
+  Loss: nan
+  CE Loss: nan
+  KL Loss: nan
+  Accuracy: nan
+
+Evaluating on test protein...
+  Student time: 10.63 ms
+  Teacher time: 16.40 ms
+  Speedup: 1.54x
+  Student accuracy: 0.019
+  Teacher accuracy: 0.472
+  Student-Teacher agreement: 0.057
+Checkpoint saved to output/distillation/student_epoch_2.pt
+
+Epoch 3/5
+----------------------------------------------------------------------
+Training:   0%|          | 0/2 [00:00<?, ?it/s]Training:  50%|█████     | 1/2 [00:00<00:00,  6.50it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.59it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.57it/s]
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/5L33.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/6MRR.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Epoch 3 Summary:
+  Loss: nan
+  CE Loss: nan
+  KL Loss: nan
+  Accuracy: nan
+
+Evaluating on test protein...
+  Student time: 10.51 ms
+  Teacher time: 22.77 ms
+  Speedup: 2.17x
+  Student accuracy: 0.019
+  Teacher accuracy: 0.491
+  Student-Teacher agreement: 0.047
+Checkpoint saved to output/distillation/student_epoch_3.pt
+
+Epoch 4/5
+----------------------------------------------------------------------
+Training:   0%|          | 0/2 [00:00<?, ?it/s]Training:  50%|█████     | 1/2 [00:00<00:00,  6.16it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.35it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  6.32it/s]
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/5L33.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/6MRR.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Epoch 4 Summary:
+  Loss: nan
+  CE Loss: nan
+  KL Loss: nan
+  Accuracy: nan
+
+Evaluating on test protein...
+  Student time: 8.05 ms
+  Teacher time: 22.17 ms
+  Speedup: 2.75x
+  Student accuracy: 0.019
+  Teacher accuracy: 0.453
+  Student-Teacher agreement: 0.047
+Checkpoint saved to output/distillation/student_epoch_4.pt
+
+Epoch 5/5
+----------------------------------------------------------------------
+Training:   0%|          | 0/2 [00:00<?, ?it/s]Training:  50%|█████     | 1/2 [00:00<00:00,  6.42it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  4.66it/s]Training: 100%|██████████| 2/2 [00:00<00:00,  4.86it/s]
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/5L33.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Error processing /Users/ktretina/claude_dir/ProteinMPNN/inputs/PDB_monomers/pdbs/6MRR.pdb: 'PosixPath' object has no attribute 'rfind'
+
+Epoch 5 Summary:
+  Loss: nan
+  CE Loss: nan
+  KL Loss: nan
+  Accuracy: nan
+
+Evaluating on test protein...
+  Student time: 6.55 ms
+  Teacher time: 18.62 ms
+  Speedup: 2.84x
+  Student accuracy: 0.019
+  Teacher accuracy: 0.453
+  Student-Teacher agreement: 0.038
+Checkpoint saved to output/distillation/student_epoch_5.pt
+
+======================================================================
+FINAL EVALUATION
+======================================================================
+
+Student Model Performance:
+  Architecture: 1+1 layers, dim=64, k=16
+  Inference time: 6.50 ms
+  Speedup vs teacher: 2.41x
+  Accuracy: 0.019
+  Agreement with teacher: 0.047
+Checkpoint saved to output/distillation/student_final.pt
+
+======================================================================
+Training complete!
+Final model saved to: output/distillation/student_final.pt
+======================================================================
+
+Training history saved to: output/distillation/training_history.json
