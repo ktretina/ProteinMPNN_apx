@@ -1,0 +1,56 @@
+{
+  "config": {
+    "name": "Ultra-Small Student (1+1, dim=64, k=16)",
+    "encoder": 1,
+    "decoder": 1,
+    "dim": 64,
+    "k": 16
+  },
+  "hyperparameters": {
+    "alpha": 0.5,
+    "beta": 0.5,
+    "temperature": 3.0,
+    "learning_rate": 0.0001,
+    "epochs": 5,
+    "batch_size": 4
+  },
+  "history": {
+    "train_loss": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "ce_loss": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "kl_loss": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    "accuracy": [
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ]
+  },
+  "final_metrics": {
+    "student_time_ms": 6.5032499842345715,
+    "teacher_time_ms": 15.68220800254494,
+    "speedup": 2.4114416700207357,
+    "student_accuracy": 0.01886792480945587,
+    "teacher_accuracy": 0.46226415038108826,
+    "agreement": 0.04716981202363968,
+    "seq_length": 106
+  }
+}

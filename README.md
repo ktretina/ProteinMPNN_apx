@@ -96,8 +96,8 @@ This repository provides:
 - **Minimal+Fast variant** for general use (2.19x, single protein)
 - **Fast variant** for conservative speedup (1.71x, minimal risk)
 
-**⚠️ Trade-off**: Expected 3-7% accuracy reduction (needs validation on your use case)
-**✅ Next**: Knowledge distillation targeting 10-12x speedup
+**⚠️ Trade-off**: Expected 5-10% accuracy reduction (needs validation on your use case)
+**⚠️ Important**: All speedups are verified on M3 Pro hardware with actual benchmarks
 
 ### What Doesn't Work ❌
 
@@ -147,46 +147,40 @@ This repository provides:
 
 ---
 
-## 🗺️ Optimization Roadmap Progress
+## 📊 Complete Benchmark Results
 
-**Status**: Systematically working through optimization roadmap
-**Current Achievement**: 8.20x speedup (EXTREME-v2)
-**Target**: 10-15x with knowledge distillation
+**All optimizations below have been actually implemented and benchmarked on M3 Pro.**
 
-| Priority | Optimization | Effort | Target | Status |
-|----------|--------------|--------|--------|---------|
-| ⭐ Immediate | k=12 Testing | 5 min | 1.08x | ✅ **COMPLETE (8.20x total)** |
-| ⭐⭐⭐⭐⭐ Short-term | Knowledge Distillation | 1-2 weeks | 10-15x | ⚠️ **Framework Complete** |
-| ⭐⭐⭐ Medium-term | Non-Autoregressive | 1-2 months | 3-5x | 📋 **Design Ready** |
-| ⭐⭐⭐⭐ Long-term | Mamba/SSM | 3+ months | 2-4x | 📋 **Design Ready** |
+### K-Neighbor Reduction Testing
 
-See [ROADMAP_PROGRESS.md](ROADMAP_PROGRESS.md) for detailed progress report.
+| k Value | Time | Speedup | Throughput | Quality Estimate |
+|---------|------|---------|------------|------------------|
+| 48 (baseline) | 14.55 ms | 1.00x | 7,287 res/sec | Excellent |
+| 32 | 11.45 ms | 1.27x | 9,254 res/sec | Excellent |
+| 24 | 9.75 ms | 1.49x | 10,867 res/sec | Good |
+| 16 | 8.55 ms | 1.70x | 12,404 res/sec | Good |
+| 12 | 7.95 ms | 1.83x | 13,325 res/sec | Fair |
+| 8 | 7.88 ms | 1.85x | 13,459 res/sec | Risky |
 
-### Future Optimizations (Require Training)
+**Finding**: k=12 offers best balance before diminishing returns at k=8.
 
-**⭐⭐⭐⭐⭐ Knowledge Distillation** (1-2 weeks effort) - **IN PROGRESS**:
-- Train tiny student (1+1 layers, dim=64, k=16) to mimic teacher (3+3 layers)
-- Framework complete, initial training done
-- Architecture shows 2.84x speedup potential
-- Expected combined: **10-12x speedup** vs baseline
-- Status: Needs proper dataset and retraining
+### Model Architecture Variants
 
-**⭐⭐⭐⭐ Mamba/State Space Models** (3+ months effort) - **DESIGNED**:
-- Replace O(N²) graph attention with O(N) SSM
-- Expected: **2-4x speedup** for proteins >500 residues
-- Complete architecture designed and documented
-- Best for very long proteins (1000+ residues)
-- Status: Ready for implementation when needed
+| Config | Layers | Dim | k | Batch | Time | Speedup |
+|--------|--------|-----|---|-------|------|---------|
+| Baseline | 3+3 | 128 | 48 | 1 | 15.63 ms | 1.00x |
+| Fewer Layers | 2+2 | 128 | 48 | 1 | 11.78 ms | 1.33x |
+| Smaller Dim | 3+3 | 64 | 48 | 1 | 9.42 ms | 1.66x |
+| Minimal | 2+2 | 64 | 48 | 1 | 8.11 ms | 1.93x |
+| Fast | 3+3 | 128 | 16 | 1 | 8.55 ms | 1.83x |
+| Minimal+Fast | 2+2 | 64 | 16 | 1 | 6.68 ms | 2.34x |
+| ULTIMATE | 2+2 | 64 | 16 | 4 | 2.30 ms | 6.80x |
+| EXTREME | 2+2 | 64 | 16 | 8 | 2.23 ms | 7.01x |
+| **EXTREME-v2** | **2+2** | **64** | **12** | **8** | **1.91 ms** | **8.18x** |
 
-**⭐⭐⭐ Non-Autoregressive Decoding** (1-2 months effort) - **DESIGNED**:
-- Parallel sequence generation (MLM objective)
-- Expected: **3-5x speedup** for sampling tasks
-- Complete architecture designed and documented
-- Good for high-throughput screening
-- Status: Ready for implementation when needed
-- Good for high-throughput screening
+**All measurements**: 20 runs with proper MPS synchronization on 5L33.pdb (106 residues)
 
-See [EXPERIMENTAL_OPTIMIZATIONS_ANALYSIS.md](EXPERIMENTAL_OPTIMIZATIONS_ANALYSIS.md) for detailed analysis.
+See [ACTUAL_RESULTS_ONLY.md](ACTUAL_RESULTS_ONLY.md) for verification methodology.
 
 ---
 
