@@ -241,15 +241,29 @@ model = ProteinMPNN(
 - Issue: MPS backend immaturity
 - Already memory-bound
 
+**Int8 Quantization**:
+- Status: ❌ Failed
+- Error: Quantized operators not implemented for MPS
+- Issue: `aten::quantize_per_tensor` and `aten::empty_quantized` missing
+- Would need: torchao library (likely no MPS support)
+
+**KV Caching**:
+- Status: ❌ Not applicable
+- Reason: forward() method uses parallel processing, not autoregressive
+- Note: sample() method already has effective caching via h_V_stack
+
+**k-NN Graph Construction Optimization**:
+- Status: ❌ No benefit found
+- Current: O(N²) with torch.topk (GPU-optimized)
+- Alternatives: FAISS/ball tree only help for 1000+ residue proteins
+- Already optimized: Reduced k from 48→16 (1.75x speedup)
+
 **Flash Attention**:
 - Status: ⚠️ Not tested (complex)
 - Would need: Custom Metal implementation
 - Probably not worth effort given speedups achieved
 
-**KV Caching**:
-- Status: ⚠️ Not tested (decoder-specific)
-- Would need: Architecture modifications
-- Complex implementation
+**See [NEW_OPTIMIZATIONS_TESTED.md](NEW_OPTIMIZATIONS_TESTED.md) for detailed analysis of additional tests.**
 
 ---
 
