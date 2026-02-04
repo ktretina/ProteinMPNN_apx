@@ -108,6 +108,21 @@ This repository provides:
 - Actual result: 0.99x (slightly slower)
 - Root cause: MPS backend immaturity, already memory-bound
 
+**Int8 Quantization**: MPS not supported
+- Literature claim: 1.5-2x speedup
+- Actual result: Runtime errors (operator not implemented for MPS)
+- Root cause: Quantized operations not available on MPS backend
+
+**KV Caching**: Not applicable
+- Literature claim: 2-3x speedup for autoregressive models
+- Actual result: Already implemented where applicable
+- Root cause: ProteinMPNN forward() is parallel (no autoregressive generation)
+
+**k-NN Graph Optimization**: Already efficient
+- Literature claim: O(N²) bottleneck for large proteins
+- Actual result: Current implementation well-optimized for typical sizes
+- Root cause: GPU-optimized for proteins <1000 residues; ANN algorithms don't help
+
 ### Reality Check
 
 **Literature claims of 10-25x speedups are CUDA-specific and don't transfer to Apple Silicon:**
@@ -116,11 +131,14 @@ This repository provides:
 |--------------|-----------|------------|---------|
 | BFloat16 | 1.8-2x | N/A | ❌ Incompatible |
 | torch.compile | 1.5x | 0.99x | ❌ No benefit |
+| Int8 Quantization | 1.5-2x | N/A | ❌ Not supported |
+| KV Caching | 2-3x | N/A | ❌ Not applicable |
 | Batching | 2-4x | 1.26x | ✅ Modest gain |
+| k-NN Optimization | Variable | N/A | ❌ Already efficient |
 
 **Key Insight**: The MPS backend is already well-optimized (7,000-8,000 res/sec baseline). Most CUDA optimizations target different bottlenecks (compute vs memory bandwidth) that don't apply to unified memory architectures.
 
-**See [OPTIMIZATION_RESULTS.md](OPTIMIZATION_RESULTS.md) for detailed analysis.**
+**See [OPTIMIZATION_RESULTS.md](OPTIMIZATION_RESULTS.md) and [NEW_OPTIMIZATIONS_TESTED.md](NEW_OPTIMIZATIONS_TESTED.md) for detailed analysis.**
 
 ---
 
@@ -228,19 +246,41 @@ python run_real_benchmarks.py
 ProteinMPNN_apx/
 ├── README.md                              # This file
 ├── requirements.txt                       # Python dependencies
-├── official_proteinmpnn_benchmark.py      # Official benchmark script
-├── run_real_benchmarks.py                 # MLX benchmark script
+│
+├── Optimization Benchmarks/
+│   ├── benchmark_compile.py               # torch.compile testing
+│   ├── benchmark_batching.py              # Batching optimization
+│   ├── benchmark_comprehensive.py         # K-neighbors sweep
+│   ├── benchmark_model_pruning.py         # Model architecture reduction
+│   ├── benchmark_ultimate_variants.py     # Combined optimizations (6.85x)
+│   └── benchmark_quantization.py          # Int8 quantization testing
+│
+├── Documentation/
+│   ├── COMPLETE_OPTIMIZATION_GUIDE.md     # Comprehensive guide (850+ lines)
+│   ├── OPTIMIZATION_RESULTS.md            # What doesn't work
+│   ├── OPTIMIZATIONS_THAT_WORK.md         # Production-ready variants
+│   ├── NEW_OPTIMIZATIONS_TESTED.md        # Latest round of testing
+│   ├── TRANSPARENCY_REPORT.md             # Validation methodology
+│   └── FINAL_STATUS_REPORT.md             # Project status
+│
+├── output/
+│   ├── official_proteinmpnn_benchmarks.json
+│   ├── ultimate_variants.json             # 6.85x speedup results
+│   ├── model_pruning_benchmarks.json
+│   ├── quantization_benchmarks.json
+│   └── benchmarks/
+│       └── real_measurements.json         # MLX results
+│
+├── Original Benchmarks/
+│   ├── official_proteinmpnn_benchmark.py  # Official benchmark script
+│   └── run_real_benchmarks.py             # MLX benchmark script
+│
 ├── models/
 │   ├── reference_implementation.py        # MLX reference with full features
 │   └── README.md                          # Model documentation
-├── output/
-│   ├── official_proteinmpnn_benchmarks.json  # Official results
-│   └── benchmarks/
-│       └── real_measurements.json         # MLX results
-├── docs/
-│   └── benchmarking_guide.md              # Detailed methodology
-├── TRANSPARENCY_REPORT.md                 # Validation methodology
-└── FINAL_STATUS_REPORT.md                 # Project status
+│
+└── docs/
+    └── benchmarking_guide.md              # Detailed methodology
 
 External:
 ProteinMPNN/                               # Official repository (clone separately)
