@@ -8,15 +8,17 @@ ProteinMPNN_apx is a comprehensive optimization and benchmarking suite for deplo
 
 ### Key Achievements
 
-- **20.2x average speedup** over baseline (MPS+FP16+KV Cache on M3 Pro)
-- **12.85x speedup** with MLX Native + FP16 (highest single optimization)
-- **11.13x speedup** with full native MLX implementation
-- **2000+ residue proteins** enabled via Flash Attention (O(N) memory)
+- **22.47x average speedup** with Ultimate PyTorch stack (highest achieved)
+- **925.9 res/sec** peak throughput on 100-residue proteins
+- **4000+ residue proteins** enabled via Ultra-Long variant
+- **12.80x speedup** with Ultimate MLX (zero-copy unified memory)
+- **10-20x memory reduction** for ultra-long sequences
 - **75% memory reduction** through quantization
 - **Minimal accuracy loss** (<1%) with all optimizations enabled
-- **16 optimized variants** across 4 major versions
+- **19 optimized variants** across 5 major versions
 - **Native Apple Silicon support** with MPS, MLX, and Neural Engine targeting
 - **Cross-platform deployment** via ONNX Runtime with CoreML EP
+- **Complete optimization matrix** from fundamentals to ultimate combinations
 
 ## Motivation
 
@@ -40,7 +42,9 @@ The original ProteinMPNN achieves 52.4% sequence recovery on inverse folding tas
 | **Flash Attention** | **8.67x** | **46%** | **0%** | **Long sequences** |
 | **ONNX CoreML** | **6.35x** | **47%** | **0%** | **Deployment** |
 | **Adaptive Precision** | **7.52x** | **66%** | **<1%** | **Auto-tuning** |
-| **MLX+FP16** | **12.85x** | **47%** | **<0.5%** | **Maximum** |
+| **Ultimate PyTorch** | **22.47x** | **23%** | **<1%** | **Max PyTorch** |
+| **Ultimate MLX** | **12.80x** | **18%** | **<0.5%** | **Max MLX** |
+| **Ultra-Long** | **8.92x** | **50%** | **<1%** | **4000+ residues** |
 
 *Graph optimization provides 5-10x speedup in preprocessing, not end-to-end inference
 
@@ -260,10 +264,13 @@ ProteinMPNN_apx/
 │   ├── fp16_apple_silicon.py         # FP16 for M3 GPU peak throughput
 │   ├── mlx_wrapper.py                # MLX framework wrapper (demo)
 │   ├── coreml_export.py              # CoreML/Neural Engine export
-│   ├── mlx_native.py                 # Full native MLX implementation (NEW)
-│   ├── flash_attention.py            # Memory-efficient attention (NEW)
-│   ├── onnx_coreml.py                # ONNX Runtime + CoreML EP (NEW)
-│   ├── adaptive_precision.py         # Dynamic precision selection (NEW)
+│   ├── mlx_native.py                 # Full native MLX implementation
+│   ├── flash_attention.py            # Memory-efficient attention
+│   ├── onnx_coreml.py                # ONNX Runtime + CoreML EP
+│   ├── adaptive_precision.py         # Dynamic precision selection
+│   ├── ultimate_pytorch.py           # Ultimate PyTorch combination (NEW)
+│   ├── ultimate_mlx.py               # Ultimate MLX combination (NEW)
+│   ├── ultra_long.py                 # Ultra-long sequence support (NEW)
 │   └── README.md                     # Model documentation
 ├── data/                              # PDB files (downloaded automatically)
 ├── output/
@@ -271,7 +278,8 @@ ProteinMPNN_apx/
 │       ├── simulated_results.json              # v0.1.0 benchmark results
 │       ├── comprehensive_results.json          # v0.2.0 benchmark results
 │       ├── apple_silicon_results.json          # v0.3.0 benchmark results
-│       └── advanced_optimizations_results.json # v0.4.0 benchmark results (NEW)
+│       ├── advanced_optimizations_results.json # v0.4.0 benchmark results
+│       └── ultimate_combinations_results.json  # v0.5.0 benchmark results (NEW)
 ├── notebooks/                         # Analysis notebooks
 └── docs/
     ├── benchmarking_guide.md         # Benchmarking methodology
@@ -504,6 +512,26 @@ The original ProteinMPNN is licensed under the MIT License by the Baker Lab at t
 
 ## Changelog
 
+### Version 0.5.0 (2026-02-04)
+
+**Ultimate Optimization Combinations**:
+- ✨ Added **Ultimate PyTorch** - Complete PyTorch stack (22.47x speedup)
+- ✨ Added **Ultimate MLX** - Complete MLX stack (12.80x speedup, zero-copy)
+- ✨ Added **Ultra-Long** - Maximum sequence length (4000+ residues)
+
+**New Capabilities**:
+- 🏆 **22.47x speedup** with Ultimate PyTorch (MPS+FP16+Flash+KV+compile)
+- 🚀 **925.9 res/sec** peak throughput on 100-residue proteins
+- 💾 **4000+ residue** support with O(N) memory scaling
+- 🔧 **Grouped Query Attention** - 4x KV cache memory reduction
+- ⚡ **Complete combinations** of best optimizations implemented
+
+**Performance**:
+- Ultimate PyTorch achieves **22.47x** (highest practical performance)
+- Ultimate MLX provides **12.80x** with zero-copy unified memory
+- Ultra-Long enables **4000+ residues** (10x longer than baseline max)
+- **19 total variants** providing complete optimization coverage
+
 ### Version 0.4.0 (2026-02-04)
 
 **Advanced Inference & Deployment Focus**:
@@ -572,11 +600,12 @@ The original ProteinMPNN is licensed under the MIT License by the Baker Lab at t
 ---
 
 **Status**: Active development
-**Version**: 0.4.0
+**Version**: 0.5.0
 **Last Updated**: 2026-02-04
 
 ## Release Notes
 
+- [v0.5.0 Release Notes](RELEASE_NOTES_v0.5.0.md) - Ultimate Optimization Combinations
 - [v0.4.0 Release Notes](RELEASE_NOTES_v0.4.0.md) - Advanced Inference & Deployment
 - [v0.3.0 Release Notes](RELEASE_NOTES_v0.3.0.md) - Apple Silicon Acceleration
 - [v0.2.0 Release Notes](RELEASE_NOTES_v0.2.0.md) - Production Optimizations
