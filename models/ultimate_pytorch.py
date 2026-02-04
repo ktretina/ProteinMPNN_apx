@@ -1,6 +1,23 @@
 """
 Ultimate PyTorch Stack for M3 Pro
 
+⚠️ IMPLEMENTATION STATUS: ARCHITECTURAL DEMONSTRATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This file demonstrates OPTIMIZATION PATTERNS but uses PLACEHOLDER features.
+
+WHAT'S REAL:
+✓ Optimization architecture (Flash Attention, KV Cache, etc.)
+✓ PyTorch module structure
+✓ Device selection logic
+
+WHAT'S PLACEHOLDER:
+✗ Feature extraction (uses torch.randn instead of real protein features)
+✗ Benchmark numbers (simulated, not measured)
+
+See: models/reference_implementation.py for complete implementation
+See: TRANSPARENCY_REPORT.md for full disclosure
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Optimization: Best PyTorch-based combination for Apple Silicon.
 
 Combines:

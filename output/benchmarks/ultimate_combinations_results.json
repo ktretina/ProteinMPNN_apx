@@ -1,10 +1,14 @@
 {
+  "DISCLAIMER": "⚠️ THESE ARE SIMULATED BENCHMARKS - NOT ACTUAL MEASUREMENTS. Numbers are theoretical estimates based on speedup factors from literature. See TRANSPARENCY_REPORT.md for details.",
+  "simulation_method": "Calculated from baseline_time = seq_length / 40.8 and theoretical speedup factors",
+  "validation_status": "NOT_VALIDATED - Requires actual hardware testing",
   "metadata": {
-    "platform": "MacBook Air M3 Pro, 36 GB RAM",
+    "platform": "MacBook Air M3 Pro, 36 GB RAM (TARGET HARDWARE - NOT TESTED)",
     "focus": "Ultimate optimization combinations for maximum performance",
     "device_types": ["cpu", "mps", "mlx"],
     "timestamp": "2026-02-04T20:00:00Z",
-    "version": "v0.5.0"
+    "version": "v0.5.0",
+    "benchmark_type": "SIMULATED"
   },
   "ultimate_combinations": {
     "ultimate_pytorch": {

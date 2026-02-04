@@ -2,6 +2,20 @@
 
 **Optimized ProteinMPNN implementations for edge computing and Apple Silicon platforms**
 
+## ⚠️ IMPORTANT DISCLAIMER
+
+**The benchmark results in this repository are SIMULATED ESTIMATES based on theoretical speedup factors, NOT actual timing measurements.**
+
+Please read [TRANSPARENCY_REPORT.md](TRANSPARENCY_REPORT.md) for complete details on:
+- What's been actually implemented vs. simulated
+- How benchmark numbers were calculated
+- Limitations and caveats
+- Recommendations for validation
+
+**This repository serves as an educational and architectural reference, not a production-ready implementation.**
+
+---
+
 ## Overview
 
 ProteinMPNN_apx is a comprehensive optimization and benchmarking suite for deploying ProteinMPNN—a state-of-the-art protein sequence design AI—on consumer-grade hardware, with a focus on Apple Silicon (M-series chips). This project demonstrates that high-performance computational protein design is possible outside traditional HPC environments.
