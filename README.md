@@ -65,6 +65,48 @@ This repository provides:
 
 ---
 
+## Optimization Testing Results 🔬
+
+**We systematically tested optimization strategies from literature on actual M3 Pro hardware.**
+
+### What Works ✅
+
+**Batching**: 1.26x speedup (batch_size=8)
+- Batch size 1: 14.79 ms/protein (baseline)
+- Batch size 2: 12.58 ms/protein (1.18x speedup)
+- Batch size 4: 11.93 ms/protein (1.24x speedup)
+- Batch size 8: 11.69 ms/protein (1.26x speedup)
+
+**Recommendation**: Use batch_size=2-4 for optimal efficiency/speedup tradeoff in production.
+
+### What Doesn't Work ❌
+
+**BFloat16/FP16 Precision**: MPS dtype mismatch errors
+- Literature claim: 1.8-2x speedup
+- Actual result: Cannot execute (runtime errors)
+- Root cause: MPS requires strict dtype consistency
+
+**torch.compile**: No benefit
+- Literature claim: 1.5x speedup
+- Actual result: 0.99x (slightly slower)
+- Root cause: MPS backend immaturity, already memory-bound
+
+### Reality Check
+
+**Literature claims of 10-25x speedups are CUDA-specific and don't transfer to Apple Silicon:**
+
+| Optimization | Literature | M3 Pro MPS | Status |
+|--------------|-----------|------------|---------|
+| BFloat16 | 1.8-2x | N/A | ❌ Incompatible |
+| torch.compile | 1.5x | 0.99x | ❌ No benefit |
+| Batching | 2-4x | 1.26x | ✅ Modest gain |
+
+**Key Insight**: The MPS backend is already well-optimized (7,000-8,000 res/sec baseline). Most CUDA optimizations target different bottlenecks (compute vs memory bandwidth) that don't apply to unified memory architectures.
+
+**See [OPTIMIZATION_RESULTS.md](OPTIMIZATION_RESULTS.md) for detailed analysis.**
+
+---
+
 ## Quick Start
 
 ### Installation
