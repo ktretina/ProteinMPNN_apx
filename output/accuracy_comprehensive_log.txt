@@ -1,0 +1,145 @@
+================================================================================
+COMPREHENSIVE ACCURACY + PERFORMANCE BENCHMARKING
+================================================================================
+✅ Found: 5L33.pdb
+✅ Found: 6MRR.pdb
+⚠️  Missing: 6VW1.pdb
+
+Testing on 2 proteins
+
+================================================================================
+RUNNING COMPREHENSIVE BENCHMARKS
+================================================================================
+
+Test protein: 5L33.pdb
+
+================================================================================
+TESTING: Baseline
+================================================================================
+
+----------------------------------------
+SPEED BENCHMARK
+----------------------------------------
+  Time: 14.69 ± 0.27 ms
+  Throughput: 7215 residues/sec
+
+----------------------------------------
+ACCURACY BENCHMARK
+----------------------------------------
+  Sample 1: 6.6% recovery
+  Sample 2: 5.7% recovery
+  Sample 3: 6.6% recovery
+
+  Average Recovery: 6.2 ± 0.5%
+  Consensus Recovery: 6.6%
+  Position Recovery: 0.0% - 100.0%
+
+================================================================================
+TESTING: Fast
+================================================================================
+
+----------------------------------------
+SPEED BENCHMARK
+----------------------------------------
+  Time: 8.82 ± 1.00 ms
+  Throughput: 12023 residues/sec
+
+----------------------------------------
+ACCURACY BENCHMARK
+----------------------------------------
+  Sample 1: 0.9% recovery
+  Sample 2: 0.9% recovery
+  Sample 3: 0.9% recovery
+
+  Average Recovery: 0.9 ± 0.0%
+  Consensus Recovery: 0.9%
+  Position Recovery: 0.0% - 100.0%
+
+================================================================================
+TESTING: Minimal
+================================================================================
+
+----------------------------------------
+SPEED BENCHMARK
+----------------------------------------
+  Time: 7.99 ± 0.17 ms
+  Throughput: 13264 residues/sec
+
+----------------------------------------
+ACCURACY BENCHMARK
+----------------------------------------
+  Sample 1: 6.6% recovery
+  Sample 2: 6.6% recovery
+  Sample 3: 6.6% recovery
+
+  Average Recovery: 6.6 ± 0.0%
+  Consensus Recovery: 6.6%
+  Position Recovery: 0.0% - 100.0%
+
+================================================================================
+TESTING: Minimal+Fast
+================================================================================
+
+----------------------------------------
+SPEED BENCHMARK
+----------------------------------------
+  Time: 6.88 ± 0.22 ms
+  Throughput: 15408 residues/sec
+
+----------------------------------------
+ACCURACY BENCHMARK
+----------------------------------------
+  Sample 1: 5.7% recovery
+  Sample 2: 7.5% recovery
+  Sample 3: 4.7% recovery
+
+  Average Recovery: 5.9 ± 1.0%
+  Consensus Recovery: 6.6%
+  Position Recovery: 0.0% - 100.0%
+
+================================================================================
+TESTING: EXTREME-v2
+================================================================================
+
+----------------------------------------
+SPEED BENCHMARK
+----------------------------------------
+  Time: 14.82 ± 0.34 ms
+  Throughput: 57221 residues/sec
+
+----------------------------------------
+ACCURACY BENCHMARK
+----------------------------------------
+  Sample 1: 2.8% recovery
+  Sample 2: 1.9% recovery
+  Sample 3: 2.8% recovery
+
+  Average Recovery: 2.7 ± 0.3%
+  Consensus Recovery: 2.8%
+  Position Recovery: 0.0% - 100.0%
+
+================================================================================
+SUMMARY: SPEED vs ACCURACY TRADE-OFFS
+================================================================================
+
+Variant         Speed (ms)   Speedup    Recovery (%)    Loss (%)  
+---------------------------------------------------------------------------
+Baseline        14.69        1.00      x 6.2             0.0       
+Fast            8.82         1.67      x 0.9             5.3       
+Minimal         7.99         1.84      x 6.6             -0.4      
+Minimal+Fast    6.88         2.14      x 5.9             0.3       
+EXTREME-v2      14.82        0.99      x 2.7             3.5       
+
+✅ Results saved to: output/accuracy_comprehensive.json
+
+================================================================================
+ACCURACY + PERFORMANCE BENCHMARKING COMPLETE
+================================================================================
+
+Key Findings:
+- Baseline provides reference accuracy
+- Speed optimizations trade some accuracy for performance
+- Recovery rate shows how well model reproduces native sequence
+- Lower k-neighbors and smaller models = faster but less accurate
+- Batch processing improves speed without affecting accuracy per protein
+

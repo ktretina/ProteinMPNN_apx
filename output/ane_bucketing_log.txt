@@ -1,0 +1,113 @@
+Torch version 2.10.0 has not been tested with coremltools. You may run into unexpected errors. Torch 2.7.0 is the most recent version that has been tested.
+======================================================================
+ANE BUCKETED COMPILATION - IMPLEMENTATION
+======================================================================
+
+----------------------------------------------------------------------
+PHASE 1: CREATE BUCKETED MODELS
+----------------------------------------------------------------------
+
+Creating model for bucket_size=64...
+  ✅ Model created
+  Parameters: 68,437
+
+Creating model for bucket_size=128...
+  ✅ Model created
+  Parameters: 68,437
+
+Creating model for bucket_size=256...
+  ✅ Model created
+  Parameters: 68,437
+
+----------------------------------------------------------------------
+PHASE 2: CONVERT TO COREML
+----------------------------------------------------------------------
+
+Converting bucket_size=64 to CoreML...
+  Tracing model...
+  Converting to CoreML...
+Converting PyTorch Frontend ==> MIL Ops:   0%|          | 0/46 [00:00<?, ? ops/s]Converting PyTorch Frontend ==> MIL Ops:  98%|█████████▊| 45/46 [00:00<00:00, 7445.51 ops/s]
+Running MIL frontend_pytorch pipeline:   0%|          | 0/5 [00:00<?, ? passes/s]Running MIL frontend_pytorch pipeline: 100%|██████████| 5/5 [00:00<00:00, 2599.99 passes/s]
+Running MIL default pipeline:   0%|          | 0/95 [00:00<?, ? passes/s]Running MIL default pipeline: 100%|██████████| 95/95 [00:00<00:00, 1360.82 passes/s]
+Running MIL backend_mlprogram pipeline:   0%|          | 0/12 [00:00<?, ? passes/s]Running MIL backend_mlprogram pipeline: 100%|██████████| 12/12 [00:00<00:00, 3283.86 passes/s]
+  ✅ Saved to: output/coreml_models/proteinmpnn_bucket_64.mlpackage
+  Model size: 0.0 MB
+
+Converting bucket_size=128 to CoreML...
+  Tracing model...
+  Converting to CoreML...
+Converting PyTorch Frontend ==> MIL Ops:   0%|          | 0/46 [00:00<?, ? ops/s]Converting PyTorch Frontend ==> MIL Ops:  98%|█████████▊| 45/46 [00:00<00:00, 11487.75 ops/s]
+Running MIL frontend_pytorch pipeline:   0%|          | 0/5 [00:00<?, ? passes/s]Running MIL frontend_pytorch pipeline: 100%|██████████| 5/5 [00:00<00:00, 2929.39 passes/s]
+Running MIL default pipeline:   0%|          | 0/95 [00:00<?, ? passes/s]Running MIL default pipeline: 100%|██████████| 95/95 [00:00<00:00, 1440.97 passes/s]
+Running MIL backend_mlprogram pipeline:   0%|          | 0/12 [00:00<?, ? passes/s]Running MIL backend_mlprogram pipeline: 100%|██████████| 12/12 [00:00<00:00, 3239.05 passes/s]
+  ✅ Saved to: output/coreml_models/proteinmpnn_bucket_128.mlpackage
+  Model size: 0.0 MB
+
+Converting bucket_size=256 to CoreML...
+  Tracing model...
+  Converting to CoreML...
+Converting PyTorch Frontend ==> MIL Ops:   0%|          | 0/46 [00:00<?, ? ops/s]Converting PyTorch Frontend ==> MIL Ops:  98%|█████████▊| 45/46 [00:00<00:00, 10708.86 ops/s]
+Running MIL frontend_pytorch pipeline:   0%|          | 0/5 [00:00<?, ? passes/s]Running MIL frontend_pytorch pipeline: 100%|██████████| 5/5 [00:00<00:00, 2875.17 passes/s]
+Running MIL default pipeline:   0%|          | 0/95 [00:00<?, ? passes/s]Running MIL default pipeline: 100%|██████████| 95/95 [00:00<00:00, 1403.66 passes/s]
+Running MIL backend_mlprogram pipeline:   0%|          | 0/12 [00:00<?, ? passes/s]Running MIL backend_mlprogram pipeline: 100%|██████████| 12/12 [00:00<00:00, 3240.51 passes/s]
+  ✅ Saved to: output/coreml_models/proteinmpnn_bucket_256.mlpackage
+  Model size: 0.0 MB
+
+----------------------------------------------------------------------
+PHASE 3: BENCHMARK COMPARISON
+----------------------------------------------------------------------
+
+======================================================================
+BENCHMARKING BUCKET SIZE: 64
+======================================================================
+
+Benchmarking PyTorch (MPS) for bucket_size=64...
+  PyTorch (MPS): 1.16 ± 0.62 ms
+
+Benchmarking CoreML (ANE/GPU) for bucket_size=64...
+  CoreML (ANE/GPU): 0.33 ± 0.02 ms
+
+  Speedup: 3.52x
+  ✅ CoreML/ANE is faster!
+
+======================================================================
+BENCHMARKING BUCKET SIZE: 128
+======================================================================
+
+Benchmarking PyTorch (MPS) for bucket_size=128...
+  PyTorch (MPS): 1.08 ± 0.88 ms
+
+Benchmarking CoreML (ANE/GPU) for bucket_size=128...
+  CoreML (ANE/GPU): 0.58 ± 1.11 ms
+
+  Speedup: 1.86x
+  ✅ CoreML/ANE is faster!
+
+======================================================================
+BENCHMARKING BUCKET SIZE: 256
+======================================================================
+
+Benchmarking PyTorch (MPS) for bucket_size=256...
+  PyTorch (MPS): 0.83 ± 0.09 ms
+
+Benchmarking CoreML (ANE/GPU) for bucket_size=256...
+  CoreML (ANE/GPU): 0.29 ± 0.06 ms
+
+  Speedup: 2.87x
+  ✅ CoreML/ANE is faster!
+
+======================================================================
+SUMMARY
+======================================================================
+
+Bucket     PyTorch         CoreML          Speedup   
+--------------------------------------------------
+64         1.16            0.33            3.52      x
+128        1.08            0.58            1.86      x
+256        0.83            0.29            2.87      x
+
+✅ Results saved to: output/ane_bucketing_results.json
+
+======================================================================
+ANE BUCKETING IMPLEMENTATION COMPLETE
+======================================================================

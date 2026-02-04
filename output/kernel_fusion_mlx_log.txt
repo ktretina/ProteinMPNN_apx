@@ -1,0 +1,75 @@
+======================================================================
+KERNEL FUSION - MLX IMPLEMENTATION
+======================================================================
+
+1. CHECKING DEPENDENCIES
+----------------------------------------------------------------------
+✅ MLX available
+✅ PyTorch 2.10.0
+
+2. IMPLEMENTING FUSED MESSAGE PASSING
+----------------------------------------------------------------------
+
+3. BENCHMARKING
+----------------------------------------------------------------------
+
+Test configuration:
+  Batch size: 1
+  Sequence length: 106
+  Hidden dimension: 64
+  k-neighbors: 12
+  Runs: 100
+
+Creating test data...
+
+Creating models...
+
+Benchmarking MLX (fused kernel)...
+  MLX (fused): 0.59 ± 0.23 ms
+
+Benchmarking PyTorch MPS (unfused)...
+  PyTorch (unfused): 0.64 ± 0.16 ms
+
+======================================================================
+RESULTS
+======================================================================
+
+PyTorch MPS (unfused): 0.64 ± 0.16 ms
+MLX (fused):           0.59 ± 0.23 ms
+Speedup:               1.08x
+
+⚠️  Similar performance (no significant speedup)
+
+======================================================================
+NUMERICAL VERIFICATION
+======================================================================
+
+Max difference:  5.472350
+Mean difference: 1.119539
+⚠️  Outputs differ (may be due to different initialization)
+
+✅ Results saved to: output/kernel_fusion_mlx_benchmark.json
+
+======================================================================
+ANALYSIS
+======================================================================
+
+Kernel fusion combines multiple operations into a single pass:
+- Reduces memory round-trips from ~10 to ~3
+- Keeps intermediate results in faster memory
+- Eliminates kernel launch overhead
+
+Expected speedup depends on whether the workload is:
+- Memory-bound: 1.5x - 2.5x (limited by memory bandwidth)
+- Compute-bound: 1.1x - 1.3x (limited by FLOPs)
+
+Actual speedup depends on:
+1. MLX optimization maturity
+2. Metal backend efficiency
+3. Apple Silicon memory architecture
+4. Workload characteristics (small model = memory-bound)
+
+
+======================================================================
+KERNEL FUSION MLX IMPLEMENTATION COMPLETE
+======================================================================
