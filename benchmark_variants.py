@@ -30,6 +30,9 @@ try:
     from models.bfloat16_optimized import BFloat16ProteinMPNN, MixedPrecisionProteinMPNN
     from models.kv_cached import KVCachedProteinMPNN
     from models.quantized import QuantizedProteinMPNN
+    from models.graph_optimized import GraphOptimizedProteinMPNN
+    from models.compiled import CompiledProteinMPNN
+    from models.production import ProductionProteinMPNN
     MODELS_AVAILABLE = True
 except ImportError as e:
     print(f"Warning: Could not import models: {e}")
@@ -84,6 +87,35 @@ if MODELS_AVAILABLE:
             ),
             description='BFloat16 + KV Cache + Int8 Quantization',
             expected_speedup='7.0x - 15.0x'
+        ),
+        'graph_optimized': ModelVariant(
+            name='Graph Optimized',
+            model_class=lambda **kwargs: GraphOptimizedProteinMPNN(
+                base_model=BaselineProteinMPNN(**kwargs),
+                use_spatial_hashing=True
+            ),
+            description='Vectorized k-NN graph construction',
+            expected_speedup='5.0x - 10.0x (preprocessing)'
+        ),
+        'compiled': ModelVariant(
+            name='Compiled',
+            model_class=lambda **kwargs: CompiledProteinMPNN(
+                base_model=BaselineProteinMPNN(**kwargs),
+                backend='auto',
+                mode='default'
+            ),
+            description='torch.compile optimization',
+            expected_speedup='1.5x - 2.0x'
+        ),
+        'production': ModelVariant(
+            name='Production',
+            model_class=lambda **kwargs: ProductionProteinMPNN(
+                hidden_dim=kwargs.get('hidden_dim', 128),
+                num_encoder_layers=kwargs.get('num_encoder_layers', 3),
+                num_decoder_layers=kwargs.get('num_decoder_layers', 3)
+            ),
+            description='All optimizations combined (production-ready)',
+            expected_speedup='15.0x - 20.0x'
         ),
     }
 
