@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "timestamp": "2026-02-04T10:55:37",
+    "mlx_version": "0.30.3",
+    "numpy_version": "2.4.2",
+    "test_lengths": [
+      50,
+      100,
+      200
+    ],
+    "validation_status": "REAL_MEASUREMENTS",
+    "device": "MLX (Apple Silicon)",
+    "note": "All measurements are ACTUAL timing data from real runs"
+  },
+  "baseline_mlx": {
+    "50": {
+      "sequence_length": 50,
+      "mean_time_sec": 0.34849275418557224,
+      "std_time_sec": 0.013679058950421485,
+      "median_time_sec": 0.3510776460170746,
+      "min_time_sec": 0.3055554579477757,
+      "mean_time_ms": 348.49275418557227,
+      "throughput_res_per_sec": 143.47500600650946,
+      "num_runs": 50,
+      "warmup_runs": 10
+    },
+    "100": {
+      "sequence_length": 100,
+      "mean_time_sec": 0.7818711083661765,
+      "std_time_sec": 0.10180600297675185,
+      "median_time_sec": 0.7452722294838168,
+      "min_time_sec": 0.6984372499864548,
+      "mean_time_ms": 781.8711083661765,
+      "throughput_res_per_sec": 127.89831844402498,
+      "num_runs": 50,
+      "warmup_runs": 10
+    },
+    "200": {
+      "sequence_length": 200,
+      "mean_time_sec": 1.546630325054284,
+      "std_time_sec": 0.11320351402339503,
+      "median_time_sec": 1.5005917915259488,
+      "min_time_sec": 1.3766801670426503,
+      "mean_time_ms": 1546.6303250542842,
+      "throughput_res_per_sec": 129.3133832695155,
+      "num_runs": 50,
+      "warmup_runs": 10
+    }
+  },
+  "fp16_mlx": {
+    "50": {
+      "sequence_length": 50,
+      "mean_time_sec": 0.36184402167797086,
+      "std_time_sec": 0.01417762134003284,
+      "median_time_sec": 0.36028349946718663,
+      "min_time_sec": 0.3372233749832958,
+      "mean_time_ms": 361.8440216779709,
+      "throughput_res_per_sec": 138.18108633696963,
+      "num_runs": 50,
+      "warmup_runs": 10,
+      "speedup_vs_baseline": 0.9631021470784978
+    },
+    "100": {
+      "sequence_length": 100,
+      "mean_time_sec": 0.7258477516868151,
+      "std_time_sec": 0.026216527395542633,
+      "median_time_sec": 0.7210694369859993,
+      "min_time_sec": 0.6922096669441089,
+      "mean_time_ms": 725.8477516868152,
+      "throughput_res_per_sec": 137.76993834810065,
+      "num_runs": 50,
+      "warmup_runs": 10,
+      "speedup_vs_baseline": 1.0771833439576926
+    },
+    "200": {
+      "sequence_length": 200,
+      "mean_time_sec": 1.516487043350935,
+      "std_time_sec": 0.10388723165315965,
+      "median_time_sec": 1.4693598744925112,
+      "min_time_sec": 1.419966165907681,
+      "mean_time_ms": 1516.487043350935,
+      "throughput_res_per_sec": 131.88375125056533,
+      "num_runs": 50,
+      "warmup_runs": 10,
+      "speedup_vs_baseline": 1.019877045330201
+    }
+  },
+  "optimized_mlx": {
+    "50": {
+      "sequence_length": 50,
+      "mean_time_sec": 0.1929501608456485,
+      "std_time_sec": 0.026634919525642294,
+      "median_time_sec": 0.18596889602486044,
+      "min_time_sec": 0.17649991600774229,
+      "mean_time_ms": 192.9501608456485,
+      "throughput_res_per_sec": 259.1342747829983,
+      "num_runs": 50,
+      "warmup_runs": 10,
+      "speedup_vs_baseline": 1.806128342460159
+    },
+    "100": {
+      "sequence_length": 100,
+      "mean_time_sec": 0.3750109916599467,
+      "std_time_sec": 0.034223806183629545,
+      "median_time_sec": 0.36355320853181183,
+      "min_time_sec": 0.33710600004997104,
+      "mean_time_ms": 375.01099165994674,
+      "throughput_res_per_sec": 266.6588506042463,
+      "num_runs": 50,
+      "warmup_runs": 10,
+      "speedup_vs_baseline": 2.0849285107759274
+    },
+    "200": {
+      "sequence_length": 200,
+      "mean_time_sec": 0.7360292157623917,
+      "std_time_sec": 0.06766368814517945,
+      "median_time_sec": 0.7088276040158235,
+      "min_time_sec": 0.6965663330629468,
+      "mean_time_ms": 736.0292157623917,
+      "throughput_res_per_sec": 271.72834408867396,
+      "num_runs": 50,
+      "warmup_runs": 10,
+      "speedup_vs_baseline": 2.101316485721641
+    }
+  }
+}
