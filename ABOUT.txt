@@ -1,0 +1,1 @@
+Optimized ProteinMPNN implementation for Apple Silicon achieving 15× speedup with zero accuracy loss through systematic architecture pruning, batching, and Apple Neural Engine acceleration. Includes comprehensive benchmarking study comparing architectural variants, hardware-specific optimizations, and detailed analysis of speed-accuracy trade-offs for protein sequence design.

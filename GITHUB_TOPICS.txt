@@ -1,0 +1,17 @@
+Suggested GitHub Topics/Tags:
+
+protein-design
+proteinmpnn
+machine-learning
+graph-neural-networks
+apple-silicon
+neural-engine
+model-optimization
+computational-biology
+pytorch
+coreml
+protein-engineering
+bioinformatics
+deep-learning
+mlx
+benchmark
