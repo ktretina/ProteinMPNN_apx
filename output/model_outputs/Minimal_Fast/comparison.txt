@@ -1,0 +1,31 @@
+Variant: Minimal_Fast
+Description: 2+2 layers, dim=64, k=16 (pruned + reduced)
+================================================================================
+
+SEQUENCE COMPARISON
+--------------------------------------------------------------------------------
+Native:    HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Sample 1:  MIFFMMMMMMMMMMMMMMMMMFMMMMMMMMMMMMMSSMFMMMMMMMMMMMMMMMMMMMMMMMSFSMSSFMMMMMMMMMMSIMFSMMMMMMMMMMFMMMMMMMMMSM  (1.9% recovery)
+Sample 2:  MIFFMMMMMMMMMMMMMMMMMFMMMMMMMMMMMMMSSMMMMMMMMMMMMMMMMMMMMMMMMMSFSMSSFMMMMMMMMMMMIMFMMMMMMMMMMMMMMMMMMMMMSM  (1.9% recovery)
+Sample 3:  MIFFMMMMMMMMMMMMMMMMMFMMMMMMMMMMMMMSSMMIMMMMMMMMMMMMMMMMMMMMMMSFSMSSFMMMMMMMMMMMIMFSMMMMMMMMMMFMMMMMMMMMSM  (1.9% recovery)
+
+Consensus: MIFFMMMMMMMMMMMMMMMMMFMMMMMMMMMMMMMSSMMMMMMMMMMMMMMMMMMMMMMMMMSFSMSSFMMMMMMMMMMMIMFSMMMMMMMMMMFMMMMMMMMMSM  (1.9% recovery)
+
+POSITION-WISE RECOVERY
+--------------------------------------------------------------------------------
+Mean: 1.9%
+Min:  0.0%
+Max:  100.0%
+
+Positions with <50% recovery: 104
+  Position 1: 0% (native: H)
+  Position 2: 0% (native: M)
+  Position 3: 0% (native: P)
+  Position 4: 0% (native: E)
+  Position 5: 0% (native: E)
+  Position 6: 0% (native: E)
+  Position 7: 0% (native: K)
+  Position 8: 0% (native: A)
+  Position 9: 0% (native: A)
+  Position 10: 0% (native: R)

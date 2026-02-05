@@ -1,0 +1,158 @@
+================================================================================
+RUNNING ALL VARIANTS WITH SEQUENCE OUTPUTS
+================================================================================
+
+Running all variants...
+
+================================================================================
+VARIANT: Baseline
+================================================================================
+Description: 3+3 layers, dim=128, k=48 (reference)
+
+Protein: 5L33
+Length: 106 residues
+Native sequence: HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Generating 10 sequences...
+  Sample 1: 5.7% recovery
+  Sample 2: 6.6% recovery
+  Sample 3: 5.7% recovery
+  Sample 4: 5.7% recovery
+  Sample 5: 3.8% recovery
+  Sample 6: 4.7% recovery
+  Sample 7: 4.7% recovery
+  Sample 8: 5.7% recovery
+  Sample 9: 5.7% recovery
+  Sample 10: 5.7% recovery
+
+  Mean recovery: 5.4 ± 0.7%
+  Consensus recovery: 4.7%
+  ✅ Saved to: output/model_outputs/Baseline/
+
+================================================================================
+VARIANT: Fast
+================================================================================
+Description: 3+3 layers, dim=128, k=16 (reduced neighbors)
+
+Protein: 5L33
+Length: 106 residues
+Native sequence: HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Generating 10 sequences...
+  Sample 1: 6.6% recovery
+  Sample 2: 6.6% recovery
+  Sample 3: 6.6% recovery
+  Sample 4: 6.6% recovery
+  Sample 5: 6.6% recovery
+  Sample 6: 6.6% recovery
+  Sample 7: 6.6% recovery
+  Sample 8: 6.6% recovery
+  Sample 9: 6.6% recovery
+  Sample 10: 6.6% recovery
+
+  Mean recovery: 6.6 ± 0.0%
+  Consensus recovery: 6.6%
+  ✅ Saved to: output/model_outputs/Fast/
+
+================================================================================
+VARIANT: Minimal
+================================================================================
+Description: 2+2 layers, dim=64, k=48 (pruned model)
+
+Protein: 5L33
+Length: 106 residues
+Native sequence: HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Generating 10 sequences...
+  Sample 1: 2.8% recovery
+  Sample 2: 2.8% recovery
+  Sample 3: 2.8% recovery
+  Sample 4: 2.8% recovery
+  Sample 5: 1.9% recovery
+  Sample 6: 2.8% recovery
+  Sample 7: 2.8% recovery
+  Sample 8: 2.8% recovery
+  Sample 9: 2.8% recovery
+  Sample 10: 2.8% recovery
+
+  Mean recovery: 2.7 ± 0.3%
+  Consensus recovery: 2.8%
+  ✅ Saved to: output/model_outputs/Minimal/
+
+================================================================================
+VARIANT: Minimal_Fast
+================================================================================
+Description: 2+2 layers, dim=64, k=16 (pruned + reduced)
+
+Protein: 5L33
+Length: 106 residues
+Native sequence: HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Generating 10 sequences...
+  Sample 1: 1.9% recovery
+  Sample 2: 1.9% recovery
+  Sample 3: 1.9% recovery
+  Sample 4: 1.9% recovery
+  Sample 5: 1.9% recovery
+  Sample 6: 1.9% recovery
+  Sample 7: 1.9% recovery
+  Sample 8: 1.9% recovery
+  Sample 9: 1.9% recovery
+  Sample 10: 1.9% recovery
+
+  Mean recovery: 1.9 ± 0.0%
+  Consensus recovery: 1.9%
+  ✅ Saved to: output/model_outputs/Minimal_Fast/
+
+================================================================================
+VARIANT: EXTREME_v2
+================================================================================
+Description: 2+2 layers, dim=64, k=12 (maximum speed)
+
+Protein: 5L33
+Length: 106 residues
+Native sequence: HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Generating 10 sequences...
+  Sample 1: 4.7% recovery
+  Sample 2: 4.7% recovery
+  Sample 3: 4.7% recovery
+  Sample 4: 4.7% recovery
+  Sample 5: 4.7% recovery
+  Sample 6: 4.7% recovery
+  Sample 7: 4.7% recovery
+  Sample 8: 4.7% recovery
+  Sample 9: 4.7% recovery
+  Sample 10: 4.7% recovery
+
+  Mean recovery: 4.7 ± 0.0%
+  Consensus recovery: 4.7%
+  ✅ Saved to: output/model_outputs/EXTREME_v2/
+
+================================================================================
+CREATING SUMMARY COMPARISON
+================================================================================
+
+✅ Summary saved to: output/model_outputs/SUMMARY.txt
+✅ Complete results saved to: output/model_outputs/all_results.json
+
+================================================================================
+ALL VARIANTS COMPLETE
+================================================================================
+
+Output directory: output/model_outputs/
+
+Generated files:
+  - SUMMARY.txt - Overall comparison
+  - all_results.json - Complete results
+  - [Variant]/ - Individual variant outputs:
+      - sequences.fasta - All sequences in FASTA format
+      - results.json - Detailed results
+      - comparison.txt - Human-readable comparison
+
+Variants tested:
+  ✅ Baseline           5.4% mean recovery
+  ✅ Fast               6.6% mean recovery
+  ✅ Minimal            2.7% mean recovery
+  ✅ Minimal_Fast       1.9% mean recovery
+  ✅ EXTREME_v2         4.7% mean recovery

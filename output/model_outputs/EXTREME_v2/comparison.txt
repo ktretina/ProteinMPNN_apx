@@ -1,0 +1,31 @@
+Variant: EXTREME_v2
+Description: 2+2 layers, dim=64, k=12 (maximum speed)
+================================================================================
+
+SEQUENCE COMPARISON
+--------------------------------------------------------------------------------
+Native:    HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Sample 1:  NNYNNNNNKNNNNNNNNNNNNNNNNNNNGNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNYNNNNNNNNNNNNLLNNNNNNNNNNNNNKNNNNNNNNN  (4.7% recovery)
+Sample 2:  NNYNNNNKKNNNNNNNNNNNNNNNNNNNGNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNYNNNNNNNNNNNNLKNNNNNNNNNNNNNKNNNNNNNNN  (4.7% recovery)
+Sample 3:  NNYNNNNNKNNNNNNNNNNNNNNNNNNNGNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNLNNNNNNNNNNNNNNKNNNNNNNNN  (4.7% recovery)
+
+Consensus: NNYNNNNKKNNNNNNNNNNNNNNNNNNNGNNNNNNNNNNNNNNNNKNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNLNNNNNNNNNNNNNNKNNNNNNNNN  (4.7% recovery)
+
+POSITION-WISE RECOVERY
+--------------------------------------------------------------------------------
+Mean: 4.7%
+Min:  0.0%
+Max:  100.0%
+
+Positions with <50% recovery: 101
+  Position 1: 0% (native: H)
+  Position 2: 0% (native: M)
+  Position 3: 0% (native: P)
+  Position 4: 0% (native: E)
+  Position 5: 0% (native: E)
+  Position 6: 0% (native: E)
+  Position 7: 0% (native: K)
+  Position 8: 0% (native: A)
+  Position 9: 0% (native: A)
+  Position 10: 0% (native: R)

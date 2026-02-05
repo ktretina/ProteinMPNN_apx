@@ -1,0 +1,116 @@
+================================================================================
+MODEL VARIANTS SEQUENCE OUTPUT SUMMARY
+================================================================================
+
+Test protein: 5L33
+Number of samples per variant: 10
+Date: 2026-02-04
+
+Native sequence (106 residues):
+HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+================================================================================
+RECOVERY COMPARISON
+================================================================================
+
+Variant         Mean Recovery   Consensus Recovery   Status
+--------------------------------------------------------------------------------
+Baseline           5.4%           4.7%              ✅
+Fast               6.6%           6.6%              ✅
+Minimal            2.7%           2.8%              ✅
+Minimal_Fast       1.9%           1.9%              ✅
+EXTREME_v2         4.7%           4.7%              ✅
+
+================================================================================
+CONSENSUS SEQUENCES
+================================================================================
+
+Baseline:
+NNNWWWWLTWWTTWWLWWWWWWWWWWWLWWWWWWWWWNWWWWWWWLWWTWWWWWNNWWLWWWWWNWWWNWWWWWWWWWWWNNNNWWWWWWWWWWWWWWWWWWWWWN
+Recovery: 4.7%
+
+Fast:
+KKKKKKKKKKKKKKKKKKTKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKWKKKKKKWKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+Recovery: 6.6%
+
+Minimal:
+DDDNNNNNNNNNNNNNNNNNNNDNNNNNNNNNNNNNNNNNNNNNNNNNNNNNDNNNNNNNNNNNNNNDNNNNNNNNNNNDDDDDNNNNNNNNNNNNNNNNNNNNDN
+Recovery: 2.8%
+
+Minimal_Fast:
+MIFFMMMMMMMMMMMMMMMMMFMMMMMMMMMMMMMSSMMMMMMMMMMMMMMMMMMMMMMMMMSFSMSSFMMMMMMMMMMMIMFSMMMMMMMMMMFMMMMMMMMMSM
+Recovery: 1.9%
+
+EXTREME_v2:
+NNYNNNNKKNNNNNNNNNNNNNNNNNNNGNNNNNNNNNNNNNNNNKNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNLNNNNNNNNNNNNNNKNNNNNNNNN
+Recovery: 4.7%
+
+================================================================================
+DETAILED DIFFERENCES (Consensus vs Native)
+================================================================================
+
+Baseline: 101 differences
+  Position 1: H → N
+  Position 2: M → N
+  Position 3: P → N
+  Position 4: E → W
+  Position 5: E → W
+  Position 6: E → W
+  Position 7: K → W
+  Position 8: A → L
+  Position 9: A → T
+  Position 10: R → W
+  ... and 91 more
+
+Fast: 99 differences
+  Position 1: H → K
+  Position 2: M → K
+  Position 3: P → K
+  Position 4: E → K
+  Position 5: E → K
+  Position 6: E → K
+  Position 8: A → K
+  Position 9: A → K
+  Position 10: R → K
+  Position 11: L → K
+  ... and 89 more
+
+Minimal: 103 differences
+  Position 1: H → D
+  Position 2: M → D
+  Position 3: P → D
+  Position 4: E → N
+  Position 5: E → N
+  Position 6: E → N
+  Position 7: K → N
+  Position 8: A → N
+  Position 9: A → N
+  Position 10: R → N
+  ... and 93 more
+
+Minimal_Fast: 104 differences
+  Position 1: H → M
+  Position 2: M → I
+  Position 3: P → F
+  Position 4: E → F
+  Position 5: E → M
+  Position 6: E → M
+  Position 7: K → M
+  Position 8: A → M
+  Position 9: A → M
+  Position 10: R → M
+  ... and 94 more
+
+EXTREME_v2: 101 differences
+  Position 1: H → N
+  Position 2: M → N
+  Position 3: P → Y
+  Position 4: E → N
+  Position 5: E → N
+  Position 6: E → N
+  Position 7: K → N
+  Position 8: A → K
+  Position 9: A → K
+  Position 10: R → N
+  ... and 91 more
+

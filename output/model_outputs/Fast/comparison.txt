@@ -1,0 +1,31 @@
+Variant: Fast
+Description: 3+3 layers, dim=128, k=16 (reduced neighbors)
+================================================================================
+
+SEQUENCE COMPARISON
+--------------------------------------------------------------------------------
+Native:    HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Sample 1:  KKKKKKKKKKKKKKKKKKTKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKWKKKKKKWKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK  (6.6% recovery)
+Sample 2:  KKKKKKKKKKKKKKKKKKTKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKWKKKKKKWKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK  (6.6% recovery)
+Sample 3:  KKKKKKKKKKKKKKKKKKTKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKWKKKKKKWKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK  (6.6% recovery)
+
+Consensus: KKKKKKKKKKKKKKKKKKTKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKWKKKKKKWKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK  (6.6% recovery)
+
+POSITION-WISE RECOVERY
+--------------------------------------------------------------------------------
+Mean: 6.6%
+Min:  0.0%
+Max:  100.0%
+
+Positions with <50% recovery: 99
+  Position 1: 0% (native: H)
+  Position 2: 0% (native: M)
+  Position 3: 0% (native: P)
+  Position 4: 0% (native: E)
+  Position 5: 0% (native: E)
+  Position 6: 0% (native: E)
+  Position 8: 0% (native: A)
+  Position 9: 0% (native: A)
+  Position 10: 0% (native: R)
+  Position 11: 0% (native: L)

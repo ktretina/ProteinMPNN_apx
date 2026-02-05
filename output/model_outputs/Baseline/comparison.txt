@@ -1,0 +1,31 @@
+Variant: Baseline
+Description: 3+3 layers, dim=128, k=48 (reference)
+================================================================================
+
+SEQUENCE COMPARISON
+--------------------------------------------------------------------------------
+Native:    HMPEEEKAARLFIEALEKGDPELMRKVISPDTRMEDNGREFTGDEVVEYVKEIQKRGEQWHLRRYTKEGNSWRFEVQVDNNGQTEQWEVQIEVRNGRIKRVTITHV
+
+Sample 1:  NNNWWWWLTTDTTWWLWWWWWWWWWWWWWWWWWWWWWNWWWWWWWLWWTWWWWWWNWWLWWWWWWWNWNWWWWWWWWWWWNNWNWWWWWWWWWWNWWWWWGWWWNW  (5.7% recovery)
+Sample 2:  NNNWWWWLTWWTTWWLWWWWWWWLWWLLWWWWWWWWNNWWWWWWWWWWTWWWWWNWWWLWWWWWNWNWWWWWWWWWWWWWNNNWWWWWWWWWWWNWWWWWWWWWWW  (6.6% recovery)
+Sample 3:  NWWWWWWLTWWTTWWLWWWWWWWWWWWLWWWWWWWWWNNNWWWWTLWWTWWWWTWNWWLWWWWWWWWNNWWWWLWWWWWNNNNNWWWWTWWWWWWWWLWWWWWWWN  (5.7% recovery)
+
+Consensus: NNNWWWWLTWWTTWWLWWWWWWWWWWWLWWWWWWWWWNWWWWWWWLWWTWWWWWNNWWLWWWWWNWWWNWWWWWWWWWWWNNNNWWWWWWWWWWWWWWWWWWWWWN  (4.7% recovery)
+
+POSITION-WISE RECOVERY
+--------------------------------------------------------------------------------
+Mean: 5.4%
+Min:  0.0%
+Max:  100.0%
+
+Positions with <50% recovery: 101
+  Position 1: 0% (native: H)
+  Position 2: 0% (native: M)
+  Position 3: 0% (native: P)
+  Position 4: 0% (native: E)
+  Position 5: 0% (native: E)
+  Position 6: 0% (native: E)
+  Position 7: 0% (native: K)
+  Position 8: 0% (native: A)
+  Position 9: 0% (native: A)
+  Position 10: 0% (native: R)
